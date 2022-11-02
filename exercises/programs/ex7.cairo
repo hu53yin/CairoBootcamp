@@ -22,12 +22,12 @@ func pattern{bitwise_ptr: BitwiseBuiltin*, range_check_ptr}(
         }
     }
 
-    let (firstDigit) = bitwise_and(n, 1); // right-most bit
-    let (zeroLast) = bitwise_and(n, 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE); //zero out the last bit   
-    tempvar shifted = zeroLast / 2; // remove final bit    
-    let (secondDigit) = bitwise_and(shifted, 1); // next right-most bit    
+    let (first_digit) = bitwise_and(n, 1); // right-most bit
+    let (zero_last) = bitwise_and(n, 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE); //zero out the last bit   
+    tempvar shifted = zero_last / 2; // remove final bit    
+    let (second_digit) = bitwise_and(shifted, 1); // next right-most bit    
 
-    let (result) = bitwise_xor(firstDigit, secondDigit);
+    let (result) = bitwise_xor(first_digit, second_digit);
 
     if (result == 1) {
         return pattern(shifted, 0, 0, 0);
